@@ -1,0 +1,142 @@
+<template>
+    
+    <div style="border: 1px solid #d8dde6; padding: 10px;">
+    <lightning-card title="Send Fax" icon-name="custom:custom88">
+
+        <div class="slds-section">
+            <h3 class="slds-section__title">
+            <button aria-controls="expando-unique-id" aria-expanded="true" class="slds-button slds-section__title-action">
+            <svg class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" aria-hidden="true">
+            <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#switch"></use>
+            </svg>
+            <span class="slds-truncate" title="Section Title">Fax To</span>
+            </button>
+            </h3>
+            <div hidden="" class="slds-section__content" id="expando-unique-id">
+            <p>
+                
+            </p>
+        </div>
+    </div>
+
+        <lightning-layout>
+            
+        <div class="slds-m-around_medium">
+            <h2><strong>Enrollee Name:</strong> {enrolleeName}</h2>
+        </div>
+        
+            <lightning-layout-item flexibility="auto" padding="around-small">  
+                <div>
+                    <lightning-input
+                        label="From Fax Number"
+                        value={cpFaxNum}
+                        style="width: 193px;"
+                        readonly
+                    ></lightning-input>
+                    </div> 
+            <b><lightning-combobox
+                name="recipient"
+                label="To Fax Number"
+                value={selectedValue}
+                placeholder="--Please Select--"
+                options={options}
+                onchange={handleChange}
+                class="slds-size_x-small"
+                required
+            ></lightning-combobox></b>
+            <template if:true={showInputBox}>
+                <lightning-input
+                    label="Fax Number"
+                    value={inputValue}
+                    onchange={handleInputChange}
+                    style="width: 193px;"
+                    required
+                ></lightning-input>
+            </template>
+
+    </lightning-layout-item>
+    </lightning-layout>
+
+    <div class="slds-section">
+        <h3 class="slds-section__title">
+        <button aria-controls="expando-unique-id1" aria-expanded="true" class="slds-button slds-section__title-action">
+        <svg class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" aria-hidden="false">
+        <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#switch"></use>
+        </svg>
+        <span class="slds-truncate" title="Section Title">Files</span>
+        </button>
+        </h3>
+        <div hidden="" class="slds-section__content" id="expando-unique-id1">
+        <p>
+            
+        </p>
+        </div>
+        </div>
+
+
+        
+
+        <lightning-card title="Related Files">
+            <lightning-layout>
+                <lightning-layout-item flexibility="auto">
+                    <template if:true={relatedFiles}>
+                        <ul>
+                            <template for:each={relatedFiles} for:item="file">
+                                <li key={file.Id}>
+                                    <div>
+                                        <lightning-input type="checkbox" name={file.Id} label={file.Title} onchange={handleFileSelection} data-fileid={file.Id}></lightning-input>
+                                        <a href="#" data-fileid={file.Id} onclick={openFileInNewTab} class="slds-m-left_x-small">View File</a>
+                                        <span>-{file.FileType}</span>
+                                        <span>-{file.ContentSize} KB</span>
+                                    </div>
+                                </li>
+                            </template>
+                            
+                        </ul>
+                    </template>
+                    <template if:false={relatedFiles}>
+                        No related files found.
+                    </template>
+                </lightning-layout-item>
+            </lightning-layout>
+        </lightning-card>
+
+        <lightning-card title="Received Fax Files">
+            <lightning-layout>
+                <lightning-layout-item flexibility="auto">
+                    <template if:true={getRecFaxFiles}>
+                        <ul>
+                            <template for:each={getRecFaxFiles} for:item="file">
+                                <li key={file.Id}>
+                                    <div>
+                                        <lightning-input type="checkbox" name={file.Id} label={file.Title} onchange={handleFileSelection} data-fileid={file.Id}></lightning-input>
+                                        <a href="#" data-fileid={file.Id} onclick={openFileInNewTab} >View File</a>
+                                        <span>-{file.FileType}</span>
+                                        <span>-{file.ContentSize} KB</span>
+                                    
+                                    </div>
+                                </li>
+                            </template>
+                        </ul>
+                    </template>
+                    <template if:false={getRecFaxFiles}>
+                        No files found.
+                    </template>
+                </lightning-layout-item>
+            </lightning-layout>
+        </lightning-card>
+
+
+        <div style="text-align: center;">
+            <lightning-button variant="brand" label="Send" title="Primary action" onclick={handleSendClick} class="slds-m-left_x-small"></lightning-button>
+        </div>
+
+        <template if:true={showSuccessMessage}>
+            <div class="slds-text-color_success slds-p-around_small">
+                Fax sent successfully!
+            </div>
+        </template>
+    </lightning-card>
+
+</div>
+</template>

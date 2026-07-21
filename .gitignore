@@ -1,0 +1,42 @@
+# Salesforce cache
+.sfdx/
+.sf/
+
+# LWC VSCode autocomplete
+**/lwc/**/*.js-meta.xml
+**/aura/**/*/*.auradoc
+**/aura/.eslintrc.json
+**/aura/**/*Controller.js (*OBFUSCATED*).js
+**/aura/**/*Model.js (*OBFUSCATED*).js
+**/aura/**/*Helper.js (*OBFUSCATED*).js
+**/aura/**/classResources/**
+
+# LWC Jest
+**/__tests__/**
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependency directories
+node_modules/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local
+.env.*.local
