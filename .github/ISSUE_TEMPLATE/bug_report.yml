@@ -1,0 +1,107 @@
+name: Bug Report
+description: Report a bug in the eFax Components project
+title: "[BUG] "
+labels: ["bug"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report! 🐛
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Bug Description
+      description: Clearly describe the bug and what you expected to happen
+      placeholder: "What went wrong?"
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to Reproduce
+      description: Steps to reproduce the behavior
+      placeholder: |
+        1. Go to '...'
+        2. Click on '...'
+        3. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What should happen instead?
+      placeholder: "The component should..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behavior
+      description: What actually happened?
+      placeholder: "Instead, it..."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: environment
+    attributes:
+      label: Environment
+      options:
+        - Salesforce Production
+        - Salesforce Sandbox
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: salesforce-version
+    attributes:
+      label: Salesforce API Version
+      placeholder: "e.g., 58.0"
+    validations:
+      required: false
+
+  - type: input
+    id: browser
+    attributes:
+      label: Browser/Client
+      placeholder: "e.g., Chrome 90.0, Firefox 88.0"
+    validations:
+      required: false
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant Debug Logs
+      description: Paste any relevant error logs or debug output
+      render: apex
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Any other context that might help
+      placeholder: "Screenshots, error messages, etc."
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Confirmation
+      options:
+        - label: I have searched existing issues and this is not a duplicate
+          required: true
+        - label: I have provided all relevant information
+          required: true
+        - label: I agree to follow the Code of Conduct
+          required: true
